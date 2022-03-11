@@ -25,6 +25,7 @@
     'data': [
         'views/views.xml',
         'reports/sale_template.xml',
+        'security/security.xml',
     ],
 
 }
