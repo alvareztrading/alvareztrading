@@ -19,11 +19,9 @@
             </td>
         </xpath>
 
-        <xpath expr="//div[@name='so_total_summary']" position="after">
-            <t t-set="t_weight" t-value="0.0"/>
+        <xpath expr="//div/div[@name='total']" position="after">
             <div name="td_all_total" style="text-align:right;">
-                <t t-set="t_weight" t-value="t_weight + ttl_weight"/>
-                <strong>Total Weight</strong>&#009;&#009;<span t-esc="t_weight"/>
+                <strong>Total Weight</strong>&#009;&#009;<span t-esc="doc.total_weight"/>
             </div>
         </xpath>
 
