@@ -21,7 +21,7 @@
 
         <xpath expr="//div/div[@name='total']" position="after">
             <div name="td_all_total" style="text-align:right;">
-                <strong>Total Weight</strong>&#009;&#009;<span t-esc="doc.total_weight"/>
+                <strong>Total Weight</strong>&#009;&#009;<span t-esc="round((doc.total_weight), 2)"/>
             </div>
         </xpath>
 
