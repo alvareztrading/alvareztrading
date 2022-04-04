@@ -31,9 +31,9 @@
     'company': 'Cybrosys Techno Solutions',
     'website': 'https://www.cybrosys.com',
     'depends': ['stock', 'product'],
-'data': [
-        'views/product_views.xml',
+    'data': [
         'security/security.xml',
+        'views/product_views.xml',
     ],
     'images': ['static/description/banner.png'],
     'license': 'AGPL-3',
