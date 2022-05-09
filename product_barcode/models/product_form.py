@@ -44,12 +44,12 @@ class StockQuantInh(models.Model):
 class ProductAutoBarcode(models.Model):
     _inherit = 'product.product'
 
-    @api.model
-    def create(self, vals):
-        res = super(ProductAutoBarcode, self).create(vals)
-        ean = generate_ean(str(res.id))
-        res.barcode = ean
-        return res
+    # @api.model
+    # def create(self, vals):
+    #     res = super(ProductAutoBarcode, self).create(vals)
+    #     ean = generate_ean(str(res.id))
+    #     res.barcode = ean
+    #     return res
 
 
 def ean_checksum(eancode):
@@ -115,27 +115,17 @@ class ProductTemplateAutoBarcode(models.Model):
                     barcode_search = True
             rec.barcode = ean
 
-    @api.model
-    def create(self, vals_list):
-        templates = super(ProductTemplateAutoBarcode, self).create(vals_list)
-        barcode_id = templates.id
-        barcode_search = False
-        while not barcode_search:
-            ean = generate_ean(str(barcode_id))
-            if self.env['product.product'].search([('barcode', '=', ean)]):
-                barcode_search = False
-                barcode_id += 1
-            else:
-                barcode_search = True
-        templates.barcode = ean
-        return templates
-
     # @api.model
     # def create(self, vals_list):
     #     templates = super(ProductTemplateAutoBarcode, self).create(vals_list)
-    #     ean = generate_ean(str(templates.id))
+    #     barcode_id = templates.id
+    #     barcode_search = False
+    #     while not barcode_search:
+    #         ean = generate_ean(str(barcode_id))
+    #         if self.env['product.product'].search([('barcode', '=', ean)]):
+    #             barcode_search = False
+    #             barcode_id += 1
+    #         else:
+    #             barcode_search = True
     #     templates.barcode = ean
     #     return templates
-
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
