@@ -1,0 +1,35 @@
+<odoo>
+
+    <record id="action_generate_barcode" model="ir.actions.server">
+        <field name="name">Generate Barcode</field>
+        <field name="model_id" ref="product.model_product_template"/>
+        <field name="binding_model_id" ref="product.model_product_template"/>
+<!--        <field name='groups_id' eval="[(4, ref('account.group_account_invoice'))]"/>-->
+        <field name="state">code</field>
+        <field name="code">
+            if records:
+                action = records.create_barcode()
+        </field>
+    </record>
+
+    <record id="view_product_template_form_inherit" model="ir.ui.view">
+      <field name="name">product.template.form.inherit</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="product.product_template_only_form_view"/>
+      <field name="arch" type="xml">
+
+        <xpath expr="//button[@name='action_update_quantity_on_hand']" position="attributes">
+          <attribute name="groups">product_barcode.group_allow_update</attribute>
+        </xpath>
+
+          <xpath expr="//button[@name='action_open_quants']" position="attributes">
+          <attribute name="groups">product_barcode.group_allow_update</attribute>
+        </xpath>
+
+      </field>
+    </record>
+
+        <menuitem id="stock.menu_action_inventory_tree" groups="product_barcode.group_allow_update" name="Inventory Adjustments" parent="stock.menu_stock_warehouse_mgmt" sequence="30" action="stock.action_view_inventory_tree" />
+
+
+</odoo>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <template id="sales_report" inherit_id="sale.report_saleorder_document">
+
+        <xpath expr="//table[@class='table table-sm o_main_table']//thead//tr/th[3]" position="after">
+            <th style="text-align:center;">Weight</th>
+            <th style="text-align:center;">Total Weight</th>
+        </xpath>
+
+        <xpath expr="//tbody[@class='sale_tbody']//tr//td[3]" position="after">
+            <td name="td_cost" style="text-align:center;">
+                <span t-field="line.product_id.weight"/>
+            </td>
+            <t t-set="ttl_weight" t-value="0.0"/>
+            <td name="td_total" style="text-align:center;">
+                <t t-set="ttl_weight" t-value="(line.product_id.weight) * (line.product_uom_qty)"/>
+                <span t-esc="ttl_weight"/>
+            </td>
+        </xpath>
+
+        <xpath expr="//div/div[@name='total']" position="after">
+            <div name="td_all_total" style="text-align:right;">
+                <strong>Total Weight</strong>&#009;&#009;<span t-esc="round((doc.total_weight), 2)"/>
+            </div>
+        </xpath>
+
+    </template>
+
+</odoo>
