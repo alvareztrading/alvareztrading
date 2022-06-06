@@ -22,7 +22,7 @@
 
 import math
 import re
-from odoo import api, models
+from odoo import api, models, fields
 from lxml import etree
 
 
@@ -101,6 +101,8 @@ def generate_ean(ean):
 
 class ProductTemplateAutoBarcode(models.Model):
     _inherit = 'product.template'
+
+    placed = fields.Char()
 
     def create_barcode(self):
         for rec in self:
