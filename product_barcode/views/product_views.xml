@@ -22,6 +22,10 @@
           <attribute name="groups">product_barcode.group_allow_update</attribute>
         </xpath>
 
+          <xpath expr="//field[@name='barcode']" position="after">
+          <field name="placed"/>
+        </xpath>
+
           <xpath expr="//button[@name='action_open_quants']" position="attributes">
           <attribute name="groups">product_barcode.group_allow_update</attribute>
         </xpath>
