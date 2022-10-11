@@ -21,10 +21,42 @@ class SaleOrderInh(models.Model):
 
     total_weight = fields.Float(string="Weight Sub Total", compute='_compute_total_weight')
 
+    active = fields.Boolean(string='Active', defualt=True)
+
+    @api.model
+    def create(self, vals):
+        vals['active'] = True,
+        rec = super(SaleOrderInh, self).create(vals)
+        return rec
+
     def _compute_total_weight(self):
         t_w = 0
         for record in self.order_line:
             t_w = t_w + record.weight
         self.total_weight = t_w
+
+
+class PickingInh(models.Model):
+    _inherit = "stock.picking"
+
+    active = fields.Boolean(string='Active', default=True)
+
+    @api.model
+    def create(self, vals):
+        vals['active'] = True,
+        rec = super(PickingInh, self).create(vals)
+        return rec
+
+
+class PurchaseInh(models.Model):
+    _inherit = "purchase.order"
+
+    active = fields.Boolean(string='Active', default=True)
+
+    @api.model
+    def create(self, vals):
+        vals['active'] = True,
+        rec = super(PurchaseInh, self).create(vals)
+        return rec
 
 
