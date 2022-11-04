@@ -24,6 +24,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='standard_price']" position="after">
                 <field name="weight"/>
+<!--                <field name="company_ids"/>-->
             </xpath>
             <xpath expr="//field[@name='weight']" position="attributes">
                 <attribute name="optional">show</attribute>
@@ -31,6 +32,18 @@
             <xpath expr="//field[@name='virtual_available']" position="attributes">
                 <attribute name="groups">alvaraiz_custom.show_forecast_group</attribute>
             </xpath>
+        </field>
+    </record>
+
+     <record id="view_product_template_form_inherit" model="ir.ui.view">
+        <field name="name">product.template.tree.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='barcode']" position="after">
+                <field name="company_wise_ids" widget="many2many_tags" string="Company Wise"/>
+            </xpath>
+
         </field>
     </record>
 
