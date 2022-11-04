@@ -6,6 +6,12 @@ from datetime import datetime
 from odoo.exceptions import ValidationError , UserError
 
 
+class ProductProductInh(models.Model):
+    _inherit = "product.template"
+
+    company_wise_ids = fields.Many2many('res.company')
+
+
 class SaleOrderLineInh(models.Model):
     _inherit = "sale.order.line"
 
