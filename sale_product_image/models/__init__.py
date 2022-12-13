@@ -20,4 +20,3 @@
 #
 #############################################################################
 from . import sale_order_line_image
-from . import res_config_settings

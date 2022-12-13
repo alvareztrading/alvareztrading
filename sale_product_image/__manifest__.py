@@ -34,12 +34,8 @@
     ],
     "data": [
         'views/sale_order_line_image.xml',
-        'views/res_config_settings.xml',
-        'report/sale_order_report.xml',
+        # 'views/res_config_settings.xml',
+        # 'report/sale_order_report.xml',
     ],
-    'images': ['static/description/banner.png'],
-    'license': 'LGPL-3',
-    'installable': True,
-    'auto_install': False,
-    'application': False,
+
 }
