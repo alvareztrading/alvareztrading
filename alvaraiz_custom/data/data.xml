@@ -1,0 +1,12 @@
+<odoo>
+
+    <record id="action_alert_date_server" model="ir.actions.server">
+        <field name="name">Set Alert Dates</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_stock_production_lot"/>
+        <field name="binding_model_id" ref="model_stock_production_lot"/>
+        <field name="state">code</field>
+        <field name="code">action = records.change_expiration_date()</field>
+    </record>
+
+</odoo>

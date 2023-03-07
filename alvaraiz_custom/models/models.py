@@ -4,6 +4,8 @@
 from odoo import models, fields, api,_
 from datetime import datetime
 from odoo.exceptions import ValidationError , UserError
+from datetime import date
+from dateutil.relativedelta import relativedelta
 
 
 class ProductProductInh(models.Model):
@@ -66,3 +68,11 @@ class PurchaseInh(models.Model):
         return rec
 
 
+class StockLotInh(models.Model):
+    _inherit = "stock.production.lot"
+
+    @api.onchange('expiration_date')
+    def change_expiration_date(self):
+        for rec in self:
+            if rec.expiration_date:
+                rec.alert_date = rec.expiration_date - relativedelta(months=9)
